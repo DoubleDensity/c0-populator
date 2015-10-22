@@ -36,5 +36,5 @@ RUN chmod +x /usr/local/bin/confd && mkdir -p /etc/confd/conf.d && mkdir -p /etc
 COPY app /app
 
 ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
-
+#ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/app/populate.sh"]

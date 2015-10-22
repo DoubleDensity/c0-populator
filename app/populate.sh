@@ -2,10 +2,10 @@
 #populate the KV store with ceph.conf parameters
 set -x
 
-CLUSTER="ceph"
-KV="consul"
+CLUSTER="cybertron"
+KV="etcd"
 IP="127.0.0.1"
-PORT="8500"
+PORT="4001"
 CLUSTER_PATH=ceph-config/${CLUSTER}
 
 # auth
@@ -33,8 +33,8 @@ kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/mon/mon_osd_r
 
 #osd
 kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/journal_size 100
-kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/cluster_network 192.168.42.0/24
-kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/public_network 192.168.42.0/24
+kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/cluster_network 172.16.69.0/24
+kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/public_network 172.16.69.0/24
 kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/osd_mkfs_type xfs
 kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/osd_mkfs_options_xfs "-f -i size=2048"
 kviator --kvstore=${KV} --client=${IP}:${PORT} put ${CLUSTER_PATH}/osd/osd_mon_heartbeat_interval 30
